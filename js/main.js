@@ -74,8 +74,10 @@ beginMethodForOur = async(min, max, array) => {
         }
         array.shift()
         if (await callMethodMedias(array)) {
-            if (await callVarianze(array)) {
-                passTest = true
+            if (await callMethodChi2(array, min, max)) {
+                if (await callVarianze(array)) {
+                    passTest = true
+                }
             }
         }
         if (!passTest) {
@@ -103,12 +105,14 @@ beginMethodGeneral = async(min, max, limit) => {
             array.push(getNi(min, max, ri))
         }
         if (await callMethodMedias(array)) {
-            if (array.length > 2) {
-                if (await callVarianze(array)) {
+            if (await callMethodMedias(array)) {
+                if (array.length > 2) {
+                    if (await callVarianze(array)) {
+                        passTest = true
+                    }
+                } else {
                     passTest = true
                 }
-            } else {
-                passTest = true
             }
         }
         if (!passTest) {
