@@ -27,14 +27,23 @@ begin = async() => {
     diners = await beginMethodGeneral(50, 131, hours.length)
     let auxDinnerPlates, auxSumCalification;
     for (let i = 0; i < hours.length; i++) {
+
         auxDinnerPlates = await beginMethodGeneral(0, 4, diners[i])
+
         dinersPlate[i] = await selectPlates(auxDinnerPlates)
+
         dinersQualified[i] = await selectDinersCalifications(dinersPlate[i])
+
         auxSumCalification = await generateCalifications(dinersQualified[i])
+
         valueCalifications[i] = auxSumCalification
     }
     await drawTable()
+
+
     await addRowResults()
+
+
     await drawResult()
 }
 
@@ -61,9 +70,7 @@ selectDinersCalifications = async(array) => {
 beginMethodForOur = async(min, max, array) => {
     do {
         let auxSeed = seed;
-        let pow;
-        let extrat;
-        let ri;
+        let pow, extrat, ri;
         passTest = false;
         while (array.reduce((a, b) => a + b) < limitHour) {
             pow = Math.pow(auxSeed, 2)
@@ -93,9 +100,7 @@ beginMethodGeneral = async(min, max, limit) => {
     do {
         array = []
         auxSeed = seed;
-        let pow;
-        let extrat;
-        let ri;
+        let pow, extrat, ri;
         passTest = false;
         for (let i = 0; i < limit; i++) {
             pow = Math.pow(auxSeed, 2)
